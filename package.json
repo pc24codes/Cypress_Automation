@@ -13,6 +13,7 @@
     "cypress": "^13.17.0"
   },
   "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.3",
     "cypress_automation": "file:"
   }
 }
