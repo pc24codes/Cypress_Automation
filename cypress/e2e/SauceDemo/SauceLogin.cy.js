@@ -42,6 +42,10 @@ it('Error user login', function () {
     loginPage.enterUserName(errorUser["username"])
     loginPage.enterPassword(errorUser["password"])
     loginPage.clickLogin()
+    cy.on('window:alert', (confirmText) => {
+        expect(confirmText).to.equal('Change your Password');
+        return true
+    })
     loginPage.clickLogout()
 })
 
