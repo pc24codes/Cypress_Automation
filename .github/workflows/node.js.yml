@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm  
 
       # Install dependencies
       - name: Install dependencies
@@ -30,5 +31,5 @@ jobs:
 
       # Run Cypress tests
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npx cypress run --browser edge
     
