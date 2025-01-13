@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: npm  
+          cache: npm
 
       # Install dependencies
       - name: Install dependencies
@@ -32,4 +32,22 @@ jobs:
       # Run Cypress tests
       - name: Run Cypress tests
         run: npx cypress run --browser edge
-    
+      # Archive Cypress artifacts (screenshots/videos)
+      - name: Archive test artifacts
+        if: always() # Ensure this step runs even if tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-artifacts
+          path: cypress/screenshots,cypress/videos
+
+      # Generate Cypress report using Mochawesome
+      - name: Generate Cypress Report
+        run: |
+          npx cypress run --reporter mochawesome --reporter-options overwrite=false,html=true,json=true
+
+      # Archive Cypress HTML report
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-report
+          path: mochawesome-report/mochawesome.html
