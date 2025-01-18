@@ -19,6 +19,7 @@ it("Standard User Login", function () {
     loginPage.enterPassword(standardUser.password)
     loginPage.clickLogin()
     loginPage.clickLogout()
+    cy.screenshot();
 
 })
 
