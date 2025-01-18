@@ -3,8 +3,6 @@ name: Cypress CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   cypress-tests:
@@ -28,7 +26,7 @@ jobs:
 
       # Run Cypress tests
       - name: Run Cypress tests
-        run: npx cypress run --browser edge
+        run: npx cypress run --headless
       # Archive Cypress artifacts (screenshots/videos)
       - name: Archive test artifacts
         if: always() # Ensure this step runs even if tests fail
